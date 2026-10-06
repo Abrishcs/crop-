@@ -28,14 +28,20 @@ st.markdown("""
         font-family: 'Inter', 'Noto Sans Ethiopic', sans-serif;
     }
     
+    /* Transparent Header */
+    header[data-testid="stHeader"] {
+        background: transparent !important;
+    }
+    
     /* Background with lush agricultural landscape backdrop */
-    .stApp {
-        background: linear-gradient(180deg, rgba(6, 16, 9, 0.88) 0%, rgba(4, 9, 5, 0.95) 100%), 
-                    url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1600&auto=format&fit=crop');
-        background-size: cover;
-        background-position: center top;
-        background-attachment: fixed;
-        color: #e2e8f0;
+    .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
+        background-image: linear-gradient(180deg, rgba(7, 20, 12, 0.6) 0%, rgba(4, 12, 7, 0.85) 100%), 
+                          url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1600&auto=format&fit=crop') !important;
+        background-size: cover !important;
+        background-position: center top !important;
+        background-attachment: fixed !important;
+        background-repeat: no-repeat !important;
+        color: #e2e8f0 !important;
     }
 
     /* Remove extra padding top */
