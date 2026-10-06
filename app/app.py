@@ -16,8 +16,88 @@ APP_DIR = os.path.dirname(__file__)
 ASSETS = os.path.join(APP_DIR, "assets")
 MODELS = os.path.join(APP_DIR, "..", "models")
 PROCESSED = os.path.join(APP_DIR, "..", "data", "processed")
-
 st.set_page_config(page_title="Ethiopian Crop Yield Predictor", layout="centered")
+
+st.markdown("""
+<style>
+    /* Premium Dark Mode & Global Font */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+    
+    html, body, [class*="css"] {
+        font-family: 'Inter', sans-serif;
+    }
+    
+    /* Earthy Deep Green Gradient Background */
+    .stApp {
+        background: radial-gradient(circle at 10% 20%, rgb(14, 30, 20) 0%, rgb(10, 15, 12) 90%);
+        color: #e2e8f0;
+    }
+    
+    /* Headers & Text */
+    h1 {
+        background: -webkit-linear-gradient(45deg, #FFD700, #4ade80);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700;
+        text-align: center;
+        letter-spacing: -0.5px;
+        margin-bottom: 0px !important;
+    }
+    
+    /* Glassmorphism Input Cards */
+    div[data-testid="stForm"] {
+        background: rgba(30, 41, 35, 0.4);
+        border: 1px solid rgba(74, 222, 128, 0.2);
+        backdrop-filter: blur(12px);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    /* Soft Rounded Input Fields */
+    .stSelectbox > div > div, .stNumberInput > div > div, .stTextInput > div > div {
+        background-color: rgba(20, 30, 25, 0.6) !important;
+        border: 1px solid rgba(255, 215, 0, 0.2) !important;
+        border-radius: 12px;
+        color: white !important;
+    }
+
+    /* Glowing Predict Button */
+    button[data-testid="baseButton-formSubmit"] {
+        background: linear-gradient(90deg, #10b981, #059669) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 12px !important;
+        font-weight: 600 !important;
+        font-size: 1.1rem !important;
+        padding: 10px 24px !important;
+        box-shadow: 0 0 15px rgba(16, 185, 129, 0.5) !important;
+        transition: all 0.3s ease !important;
+        width: 100%;
+        margin-top: 15px;
+    }
+    button[data-testid="baseButton-formSubmit"]:hover {
+        box-shadow: 0 0 25px rgba(74, 222, 128, 0.8) !important;
+        transform: scale(1.02);
+    }
+    
+    /* Result Success Messages */
+    .stSuccess {
+        background: rgba(16, 185, 129, 0.15) !important;
+        border-left: 5px solid #10b981 !important;
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
+    }
+    
+    .stInfo {
+        background: rgba(255, 215, 0, 0.1) !important;
+        border-left: 5px solid #FFD700 !important;
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
+    }
+</style>
+""", unsafe_allow_html=True)
+
 st.title("Ethiopian Smallholder Crop Yield Predictor")
 st.caption(
     "Enter your plot details. Weather and price are looked up automatically from the "
