@@ -169,25 +169,64 @@ st.markdown("""
 
     /* Labels styling */
     .stSelectbox label, .stNumberInput label, .stSlider label, .stCheckbox label {
-        color: #e2e8f0 !important;
+        color: #f1f5f9 !important;
         font-weight: 600 !important;
-        font-size: 0.88rem !important;
+        font-size: 0.92rem !important;
     }
 
-    /* Inputs background */
-    .stSelectbox > div > div, .stNumberInput > div > div {
-        background: rgba(4, 12, 7, 0.9) !important;
-        border: 1px solid rgba(74, 222, 128, 0.35) !important;
+    /* All Inputs & Typed Text High-Contrast Fix */
+    input, input[type="number"], .stNumberInput input, .stSelectbox input, div[data-baseweb="input"] input {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-color: #041207 !important;
+        font-weight: 700 !important;
+        font-size: 0.98rem !important;
+    }
+
+    div[data-baseweb="input"], div[data-baseweb="select"] > div {
+        background-color: #041207 !important;
+        border: 1px solid rgba(74, 222, 128, 0.45) !important;
         border-radius: 12px !important;
+    }
+
+    /* Selectbox text and icons */
+    div[data-baseweb="select"] * {
         color: #ffffff !important;
     }
 
-    .stSelectbox > div > div:hover, .stNumberInput > div > div:hover {
-        border-color: #facc15 !important;
+    /* Dropdown Options Popup */
+    div[data-baseweb="popover"], div[data-baseweb="menu"], ul[role="listbox"], li[role="option"] {
+        background-color: #081a0e !important;
+        color: #ffffff !important;
+    }
+    li[role="option"]:hover, li[aria-selected="true"] {
+        background-color: rgba(34, 197, 94, 0.35) !important;
+        color: #4ade80 !important;
     }
 
-    /* Golden CTA Submit Button */
-    div.stButton > button, div[data-testid="stFormSubmitButton"] button {
+    /* Quick Preset & Secondary Buttons */
+    div.stButton > button, button[data-testid="baseButton-secondary"] {
+        background: #0b1f12 !important;
+        color: #4ade80 !important;
+        border: 1.5px solid rgba(74, 222, 128, 0.5) !important;
+        border-radius: 12px !important;
+        font-weight: 700 !important;
+        font-size: 0.92rem !important;
+        padding: 8px 16px !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+        transition: all 0.2s ease !important;
+    }
+
+    div.stButton > button:hover, button[data-testid="baseButton-secondary"]:hover {
+        background: rgba(34, 197, 94, 0.3) !important;
+        color: #ffffff !important;
+        border-color: #22c55e !important;
+        box-shadow: 0 0 16px rgba(34, 197, 94, 0.4) !important;
+        transform: translateY(-1px);
+    }
+
+    /* Golden CTA Submit Button ONLY */
+    div[data-testid="stFormSubmitButton"] button, button[data-testid="baseButton-primary"] {
         background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
         color: #041206 !important;
         border: none !important;
@@ -202,7 +241,7 @@ st.markdown("""
         letter-spacing: 0.3px;
     }
 
-    div.stButton > button:hover, div[data-testid="stFormSubmitButton"] button:hover {
+    div[data-testid="stFormSubmitButton"] button:hover, button[data-testid="baseButton-primary"]:hover {
         background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
         box-shadow: 0 6px 28px rgba(245, 158, 11, 0.8) !important;
         transform: translateY(-2px);
