@@ -169,24 +169,51 @@ st.markdown("""
 
     /* Labels styling */
     .stSelectbox label, .stNumberInput label, .stSlider label, .stCheckbox label {
-        color: #f1f5f9 !important;
-        font-weight: 600 !important;
-        font-size: 0.92rem !important;
+        color: #f8fafc !important;
+        font-weight: 700 !important;
+        font-size: 0.94rem !important;
     }
 
     /* All Inputs & Typed Text High-Contrast Fix */
     input, input[type="number"], .stNumberInput input, .stSelectbox input, div[data-baseweb="input"] input {
         color: #ffffff !important;
         -webkit-text-fill-color: #ffffff !important;
-        background-color: #041207 !important;
+        background-color: #06180b !important;
         font-weight: 700 !important;
-        font-size: 0.98rem !important;
+        font-size: 1.05rem !important;
     }
 
     div[data-baseweb="input"], div[data-baseweb="select"] > div {
-        background-color: #041207 !important;
-        border: 1px solid rgba(74, 222, 128, 0.45) !important;
+        background-color: #06180b !important;
+        border: 1.5px solid rgba(74, 222, 128, 0.5) !important;
         border-radius: 12px !important;
+    }
+
+    /* Number Input Step (+ / -) Buttons Fix */
+    button[data-testid="stNumberInputStepDown"], 
+    button[data-testid="stNumberInputStepUp"],
+    div[data-testid="stNumberInputContainer"] button {
+        background-color: #0e2916 !important;
+        color: #4ade80 !important;
+        border-color: rgba(74, 222, 128, 0.4) !important;
+    }
+    button[data-testid="stNumberInputStepDown"] svg, 
+    button[data-testid="stNumberInputStepUp"] svg,
+    div[data-testid="stNumberInputContainer"] button svg {
+        fill: #4ade80 !important;
+        color: #4ade80 !important;
+    }
+
+    /* Sliders Numbers & Labels Fix */
+    .stSlider [data-baseweb="slider"] div {
+        color: #ffffff !important;
+    }
+    div[data-testid="stSliderTickBarWithMinMax"] span, 
+    div[data-testid="stThumbValue"],
+    .stSlider p, .stSlider span, .stSlider label {
+        color: #f8fafc !important;
+        font-weight: 700 !important;
+        font-size: 0.95rem !important;
     }
 
     /* Selectbox text and icons */
@@ -197,6 +224,9 @@ st.markdown("""
     /* Dropdown Options Popup */
     div[data-baseweb="popover"], div[data-baseweb="menu"], ul[role="listbox"], li[role="option"] {
         background-color: #081a0e !important;
+        color: #ffffff !important;
+    }
+    div[data-baseweb="popover"] *, div[data-baseweb="menu"] *, ul[role="listbox"] * {
         color: #ffffff !important;
     }
     li[role="option"]:hover, li[aria-selected="true"] {
