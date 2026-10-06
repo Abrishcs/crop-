@@ -19,7 +19,7 @@ PROCESSED = os.path.join(APP_DIR, "..", "data", "processed")
 
 st.set_page_config(page_title="Ethiopian Crop Yield Predictor", layout="wide", initial_sidebar_state="collapsed")
 
-# Custom CSS matching the high-end Ethiopian dark-green UI design
+# Custom CSS matching the high-end Ethiopian dark-green UI design with agricultural landscape backdrop
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@400;600;700&display=swap');
@@ -28,9 +28,13 @@ st.markdown("""
         font-family: 'Inter', 'Noto Sans Ethiopic', sans-serif;
     }
     
-    /* Background */
+    /* Background with lush agricultural landscape backdrop */
     .stApp {
-        background: radial-gradient(ellipse at top, #0f2316 0%, #08120a 70%, #040805 100%);
+        background: linear-gradient(180deg, rgba(6, 16, 9, 0.88) 0%, rgba(4, 9, 5, 0.95) 100%), 
+                    url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1600&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center top;
+        background-attachment: fixed;
         color: #e2e8f0;
     }
 
@@ -46,12 +50,13 @@ st.markdown("""
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: rgba(18, 34, 23, 0.6);
-        border: 1px solid rgba(74, 222, 128, 0.15);
-        backdrop-filter: blur(12px);
+        background: rgba(18, 34, 23, 0.75);
+        border: 1px solid rgba(74, 222, 128, 0.2);
+        backdrop-filter: blur(16px);
         border-radius: 16px;
-        padding: 12px 24px;
-        margin-bottom: 24px;
+        padding: 14px 24px;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     }
 
     .brand-title {
@@ -60,18 +65,19 @@ st.markdown("""
         color: #ffffff;
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 14px;
     }
 
     .flag-icon {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         background: rgba(255, 255, 255, 0.1);
-        padding: 4px 8px;
-        border-radius: 8px;
+        padding: 4px 10px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .brand-sub {
-        font-size: 0.8rem;
+        font-size: 0.82rem;
         color: #86efac;
         font-weight: 400;
     }
@@ -80,42 +86,47 @@ st.markdown("""
         display: flex;
         align-items: center;
         gap: 12px;
-        font-size: 0.85rem;
+        font-size: 0.88rem;
         color: #cbd5e1;
+        background: rgba(255, 255, 255, 0.06);
+        padding: 6px 14px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .nav-tabs {
         display: flex;
-        gap: 8px;
-        margin-bottom: 20px;
+        gap: 10px;
+        margin-bottom: 22px;
     }
 
     .nav-tab {
         background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         color: #94a3b8;
-        padding: 8px 18px;
-        border-radius: 10px;
-        font-size: 0.9rem;
+        padding: 9px 20px;
+        border-radius: 12px;
+        font-size: 0.92rem;
         font-weight: 500;
-        cursor: pointer;
+        backdrop-filter: blur(10px);
     }
 
     .nav-tab.active {
-        background: rgba(34, 197, 94, 0.2);
+        background: rgba(34, 197, 94, 0.25);
         border-color: #22c55e;
         color: #4ade80;
         font-weight: 600;
+        box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
     }
 
     /* Form Container (Left Card) */
     div[data-testid="stForm"] {
-        background: rgba(15, 29, 19, 0.7) !important;
-        border: 1px solid rgba(74, 222, 128, 0.2) !important;
-        backdrop-filter: blur(16px);
+        background: rgba(13, 26, 17, 0.8) !important;
+        border: 1px solid rgba(74, 222, 128, 0.25) !important;
+        backdrop-filter: blur(20px);
         border-radius: 20px !important;
-        padding: 24px 28px !important;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        padding: 26px 30px !important;
+        box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6);
     }
 
     .card-header-green {
@@ -141,8 +152,8 @@ st.markdown("""
 
     /* Inputs background */
     .stSelectbox > div > div, .stNumberInput > div > div {
-        background: rgba(8, 16, 10, 0.8) !important;
-        border: 1px solid rgba(74, 222, 128, 0.25) !important;
+        background: rgba(6, 14, 8, 0.85) !important;
+        border: 1px solid rgba(74, 222, 128, 0.3) !important;
         border-radius: 12px !important;
         color: #ffffff !important;
     }
@@ -175,12 +186,12 @@ st.markdown("""
 
     /* Right Result Card Glass Box */
     .result-container {
-        background: rgba(15, 29, 19, 0.7);
-        border: 1px solid rgba(74, 222, 128, 0.2);
-        backdrop-filter: blur(16px);
+        background: rgba(13, 26, 17, 0.8);
+        border: 1px solid rgba(74, 222, 128, 0.25);
+        backdrop-filter: blur(20px);
         border-radius: 20px;
-        padding: 24px 28px;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        padding: 26px 30px;
+        box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6);
         height: 100%;
     }
 
@@ -192,27 +203,27 @@ st.markdown("""
     }
 
     .metric-card-green {
-        background: rgba(34, 197, 94, 0.08);
-        border: 1px solid rgba(34, 197, 94, 0.3);
+        background: rgba(34, 197, 94, 0.12);
+        border: 1px solid rgba(34, 197, 94, 0.4);
         border-radius: 16px;
-        padding: 16px 18px;
+        padding: 18px 20px;
     }
 
     .metric-card-gold {
-        background: rgba(234, 179, 8, 0.08);
-        border: 1px solid rgba(234, 179, 8, 0.3);
+        background: rgba(234, 179, 8, 0.12);
+        border: 1px solid rgba(234, 179, 8, 0.4);
         border-radius: 16px;
-        padding: 16px 18px;
+        padding: 18px 20px;
     }
 
     .metric-title {
-        font-size: 0.82rem;
+        font-size: 0.84rem;
         font-weight: 500;
         color: #94a3b8;
     }
 
     .metric-value-green {
-        font-size: 2.4rem;
+        font-size: 2.5rem;
         font-weight: 800;
         color: #22c55e;
         line-height: 1.1;
@@ -220,7 +231,7 @@ st.markdown("""
     }
 
     .metric-value-gold {
-        font-size: 2.4rem;
+        font-size: 2.5rem;
         font-weight: 800;
         color: #eab308;
         line-height: 1.1;
@@ -233,8 +244,8 @@ st.markdown("""
     }
 
     .lookup-box {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px dashed rgba(74, 222, 128, 0.2);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px dashed rgba(74, 222, 128, 0.25);
         border-radius: 12px;
         padding: 12px 16px;
         margin-top: 16px;
@@ -256,7 +267,7 @@ st.markdown("""
     </div>
     <div class="user-profile">
         <span>🔔</span>
-        <span style="font-weight: 600; color: #ffffff;">Abebe Bekele</span>
+        <span style="font-weight: 600; color: #ffffff;">Team-Four</span>
         <span style="color: #64748b;">• Oct 2026</span>
     </div>
 </div>
@@ -397,7 +408,7 @@ with right_col:
             ax.set_facecolor('none')
 
             bars = ax.bar(
-                ["Current Plot", f"Regional Avg."],
+                ["Current Plot", "Regional Avg."],
                 [predicted_yield, region_crop_avg],
                 color=["#22c55e", "#eab308"],
                 width=0.45,
@@ -409,7 +420,7 @@ with right_col:
                 height = bar.get_height()
                 ax.annotate(f'{height:.2f} T/Ha',
                             xy=(bar.get_x() + bar.get_width() / 2, height),
-                            xytext=(0, 4),  # 4 points vertical offset
+                            xytext=(0, 4),
                             textcoords="offset points",
                             ha='center', va='bottom', color='white', fontweight='bold', fontsize=10)
 
@@ -417,8 +428,8 @@ with right_col:
             ax.tick_params(colors='#94a3b8', labelsize=9)
             ax.spines['top'].set_visible(False)
             ax.spines['right'].set_visible(False)
-            ax.spines['left'].set_color('rgba(255,255,255,0.1)')
-            ax.spines['bottom'].set_color('rgba(255,255,255,0.1)')
+            ax.spines['left'].set_color('#ffffff20')
+            ax.spines['bottom'].set_color('#ffffff20')
             ax.grid(axis='y', linestyle='--', alpha=0.15, color='#ffffff')
 
             st.pyplot(fig)
