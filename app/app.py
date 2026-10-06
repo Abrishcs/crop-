@@ -63,20 +63,19 @@ st.markdown("""
     }
 
     /* Glowing Predict Button */
-    button[data-testid="baseButton-formSubmit"] {
+    div.stButton > button, div[data-testid="stFormSubmitButton"] button {
         background: linear-gradient(90deg, #10b981, #059669) !important;
         color: white !important;
         border: none !important;
         border-radius: 12px !important;
         font-weight: 600 !important;
-        font-size: 1.1rem !important;
-        padding: 10px 24px !important;
+        font-size: 18px !important;
+        padding: 5px 24px !important;
         box-shadow: 0 0 15px rgba(16, 185, 129, 0.5) !important;
         transition: all 0.3s ease !important;
-        width: 100%;
-        margin-top: 15px;
+        width: 100% !important;
     }
-    button[data-testid="baseButton-formSubmit"]:hover {
+    div.stButton > button:hover, div[data-testid="stFormSubmitButton"] button:hover {
         box-shadow: 0 0 25px rgba(74, 222, 128, 0.8) !important;
         transform: scale(1.02);
     }
