@@ -45,9 +45,9 @@ st.markdown("""
         background: transparent !important;
     }
     
-    /* Background with lush agricultural landscape backdrop */
+    /* Background with lush agricultural landscape backdrop - soft dimming so image is clearly visible */
     .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
-        background-image: linear-gradient(180deg, rgba(5, 16, 9, 0.72) 0%, rgba(3, 9, 5, 0.92) 100%), 
+        background-image: linear-gradient(180deg, rgba(10, 25, 16, 0.45) 0%, rgba(6, 16, 10, 0.60) 100%), 
                           url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1600&auto=format&fit=crop') !important;
         background-size: cover !important;
         background-position: center top !important;
@@ -56,11 +56,11 @@ st.markdown("""
         color: #f1f5f9 !important;
     }
 
-    /* Remove extra padding top */
+    /* Remove extra padding top & widen container for better visibility */
     .block-container {
         padding-top: 1.2rem !important;
         padding-bottom: 2rem !important;
-        max-width: 1280px;
+        max-width: 1380px;
     }
 
     /* Top Navigation Header */
@@ -189,6 +189,13 @@ st.markdown("""
         border-radius: 12px !important;
     }
 
+    /* Force dark background on input focus / active state */
+    div[data-baseweb="input"]:focus-within, div[data-baseweb="select"] > div:focus-within {
+        background-color: #0b2412 !important;
+        border-color: #4ade80 !important;
+        box-shadow: 0 0 12px rgba(74, 222, 128, 0.4) !important;
+    }
+
     /* Number Input Step (+ / -) Buttons Fix */
     button[data-testid="stNumberInputStepDown"], 
     button[data-testid="stNumberInputStepUp"],
@@ -196,6 +203,11 @@ st.markdown("""
         background-color: #0e2916 !important;
         color: #4ade80 !important;
         border-color: rgba(74, 222, 128, 0.4) !important;
+    }
+    button[data-testid="stNumberInputStepDown"]:hover, 
+    button[data-testid="stNumberInputStepUp"]:hover {
+        background-color: #164022 !important;
+        color: #ffffff !important;
     }
     button[data-testid="stNumberInputStepDown"] svg, 
     button[data-testid="stNumberInputStepUp"] svg,
@@ -221,12 +233,13 @@ st.markdown("""
         color: #ffffff !important;
     }
 
-    /* Dropdown Options Popup */
+    /* Dropdown Options Popup Dark Fix */
     div[data-baseweb="popover"], div[data-baseweb="menu"], ul[role="listbox"], li[role="option"] {
         background-color: #081a0e !important;
         color: #ffffff !important;
     }
     div[data-baseweb="popover"] *, div[data-baseweb="menu"] *, ul[role="listbox"] * {
+        background-color: #081a0e !important;
         color: #ffffff !important;
     }
     li[role="option"]:hover, li[aria-selected="true"] {
@@ -234,29 +247,65 @@ st.markdown("""
         color: #4ade80 !important;
     }
 
-    /* Quick Preset & Secondary Buttons */
-    div.stButton > button, button[data-testid="baseButton-secondary"] {
-        background: #0b1f12 !important;
+    /* Dataframe / Table Dark Styling */
+    [data-testid="stDataFrame"], [data-testid="stTable"], div[data-testid="stTable"] > table {
+        background-color: #06180b !important;
+        color: #ffffff !important;
+        border-radius: 12px;
+    }
+    [data-testid="stDataFrame"] *, [data-testid="stTable"] * {
+        color: #ffffff !important;
+    }
+
+    /* Universal Button Override under .stApp to beat Streamlit Emotion-Cache specificity */
+    .stApp .stButton button,
+    .stApp button[kind="secondary"],
+    .stApp button[data-testid="baseButton-secondary"],
+    .stApp button[data-testid="stBaseButton-secondary"],
+    .stApp div[data-testid="stDownloadButton"] button {
+        background-color: #0b2412 !important;
+        background: #0b2412 !important;
         color: #4ade80 !important;
-        border: 1.5px solid rgba(74, 222, 128, 0.5) !important;
+        border: 1.5px solid #22c55e !important;
         border-radius: 12px !important;
         font-weight: 700 !important;
-        font-size: 0.92rem !important;
-        padding: 8px 16px !important;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+        font-size: 0.95rem !important;
+        padding: 8px 18px !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
         transition: all 0.2s ease !important;
     }
 
-    div.stButton > button:hover, button[data-testid="baseButton-secondary"]:hover {
-        background: rgba(34, 197, 94, 0.3) !important;
-        color: #ffffff !important;
-        border-color: #22c55e !important;
-        box-shadow: 0 0 16px rgba(34, 197, 94, 0.4) !important;
+    /* Force text elements inside Streamlit buttons to be high-contrast green */
+    .stApp .stButton button *,
+    div[data-testid="stButton"] button p,
+    div[data-testid="stButton"] button span {
+        color: #4ade80 !important;
+        font-weight: 700 !important;
+    }
+
+    .stApp .stButton button:hover,
+    .stApp button[kind="secondary"]:hover,
+    .stApp button[data-testid="baseButton-secondary"]:hover,
+    .stApp button[data-testid="stBaseButton-secondary"]:hover,
+    .stApp div[data-testid="stDownloadButton"] button:hover {
+        background-color: #154522 !important;
+        background: #154522 !important;
+        border-color: #4ade80 !important;
+        box-shadow: 0 0 18px rgba(74, 222, 128, 0.5) !important;
         transform: translateY(-1px);
     }
 
+    .stApp .stButton button:hover *,
+    div[data-testid="stButton"] button:hover p,
+    div[data-testid="stButton"] button:hover span {
+        color: #ffffff !important;
+    }
+
     /* Golden CTA Submit Button ONLY */
-    div[data-testid="stFormSubmitButton"] button, button[data-testid="baseButton-primary"] {
+    .stApp div[data-testid="stFormSubmitButton"] button, 
+    .stApp button[kind="primary"],
+    .stApp button[data-testid="baseButton-primary"],
+    .stApp button[data-testid="stBaseButton-primary"] {
         background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
         color: #041206 !important;
         border: none !important;
@@ -264,16 +313,18 @@ st.markdown("""
         font-weight: 800 !important;
         font-size: 1.15rem !important;
         padding: 12px 28px !important;
-        box-shadow: 0 4px 22px rgba(245, 158, 11, 0.5) !important;
+        box-shadow: 0 4px 22px rgba(245, 158, 11, 0.6) !important;
         transition: all 0.25s ease !important;
         width: 100% !important;
         margin-top: 10px !important;
         letter-spacing: 0.3px;
     }
 
-    div[data-testid="stFormSubmitButton"] button:hover, button[data-testid="baseButton-primary"]:hover {
+    .stApp div[data-testid="stFormSubmitButton"] button:hover, 
+    .stApp button[kind="primary"]:hover,
+    .stApp button[data-testid="baseButton-primary"]:hover {
         background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
-        box-shadow: 0 6px 28px rgba(245, 158, 11, 0.8) !important;
+        box-shadow: 0 6px 28px rgba(245, 158, 11, 0.85) !important;
         transform: translateY(-2px);
     }
 
